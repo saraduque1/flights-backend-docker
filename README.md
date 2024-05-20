@@ -10,6 +10,8 @@ Esta es una aplicación Spring Boot que proporciona una API RESTful para gestion
 - Spring Boot 3.2.5
 - Spring Data JPA
 - MySQL
+- Docker
+- Docker compose
 - Swagger/OpenAPI 
 - JUnit 5
 - Mockito
@@ -22,6 +24,8 @@ Esta es una aplicación Spring Boot que proporciona una API RESTful para gestion
 - JDK 17 
 - Maven
 - MySQL
+- Docker
+- Docker Compose
 
 ## Configuración
 
@@ -44,20 +48,34 @@ Esta es una aplicación Spring Boot que proporciona una API RESTful para gestion
     spring.jpa.show-sql=true
     ```
 
-3. Ejecuta el script SQL "data.sql" para crear las tablas necesarias e insertar los datos de prueba.
+## Docker Configuración 
 
-## Construcción y Ejecución
+Para construir la aplicación, puedes usar el siguiente comando de Maven, este construira en la carpeta target un archivo .jar el cuál se utilizara para la imagen en Docker de la aplicación:
 
-Para construir y ejecutar la aplicación, puedes usar los siguientes comandos de Maven:
-
-1. Construir el proyecto:
+1. Construir el proyecto de spring boot:
     ```bash
     mvn clean install
     ```
+2. Configurar el archivo Dockerfile:
+   ```Dockerfile
+    FROM openjdk:17-jdk-alpine
 
-2. Ejecutar la aplicación:
+    COPY target/nombre_del_jar.jar /app/nombre_del_jar.jar
+    
+    WORKDIR /app
+    
+    EXPOSE 8080
+    
+    ENTRYPOINT ["java", "-jar", "/app/nombre_del_jar.jar"]
+    ```
+3. Configurar el archivo docker-compose.yml
+4. Construir y ejecutar Docker Compose:
+   ```bash
+    docker-compose up
+    ```
+5. Para detener Docker Compose:
     ```bash
-    mvn spring-boot:run
+    docker-compose down
     ```
 
 La aplicación estará disponible en `http://localhost:8080`.
