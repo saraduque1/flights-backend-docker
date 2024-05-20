@@ -34,8 +34,8 @@ Esta es una aplicación Spring Boot que proporciona una API RESTful para gestion
 2. Configura la base de datos en el archivo `application.properties`:
     ```properties
     spring.application.name=nombre_de_la_aplicacion
-    server.port=8080
-    spring.datasource.url=jdbc:mysql://localhost:3306/nombre_de_la_base_de_datos
+    server.port=8089
+    spring.datasource.url=jdbc:mysql://db:3306/nombre_de_la_base_de_datos?useUnicode=true&characterEncoding=UTF-8
     spring.datasource.username=tu_usuario
     spring.datasource.password=tu_contraseña
     spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
